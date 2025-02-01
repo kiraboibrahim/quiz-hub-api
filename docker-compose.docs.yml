@@ -1,0 +1,16 @@
+services:
+  docs:
+    image: quiz_hub_api_local_docs
+    container_name: quiz_hub_api_local_docs
+    build:
+      context: .
+      dockerfile: ./compose/local/docs/Dockerfile
+    env_file:
+      - ./.envs/.local/.django
+    volumes:
+      - ./docs:/docs:z
+      - ./config:/app/config:z
+      - ./quiz_hub_api:/app/quiz_hub_api:z
+    ports:
+      - '9000:9000'
+    command: /start-docs
